@@ -1,0 +1,41 @@
+{
+  "master": {
+    "slaves": [
+      {
+        "host": "0.0.0.0",
+        "port": 5021,
+        "type": "tcp",
+        "method": "socket",
+        "timeout": 3,
+        "byteOrder": "BIG",
+        "wordOrder": "LITTLE",
+        "retries": true,
+        "retryOnEmpty": true,
+        "retryOnInvalid": true,
+        "pollPeriod": 1000,
+        "unitId": 1,
+        "deviceName": "Drilling Rig",
+        "deviceType": "default",
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 30000
+        },
+        "connectAttemptTimeMs": 3000,
+        "connectAttemptCount": 3,
+        "waitAfterFailedAttemptsMs": 30000,
+        "attributes": [],
+        "timeseries": [
+          {
+            "tag": "bottom_hole_temperature_sensor",
+            "type": "16int",
+            "functionCode": 4,
+            "objectsCount": 1,
+            "address": 0
+          }
+        ],
+        "attributeUpdates": [],
+        "rpc": []
+      }
+    ]
+  }
+}
