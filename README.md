@@ -58,7 +58,7 @@ ThingsBoard IoT Gateway.
 | Flow Rate Sensor             |       0       | HR                   |              4 |
 | Gas Cut Mud Sensor           |       0       | HR                   |              5 |
 | System Leak Detection Sensor |       0       | HR                   |              6 |
-| WellPressureSensor           |       0       | HR                   |              7 |
+| Well Pressure Sensor         |       0       | HR                   |              7 |
 | Running                      |     False     | CO                   |              1 |
 
 ### Drawwork
