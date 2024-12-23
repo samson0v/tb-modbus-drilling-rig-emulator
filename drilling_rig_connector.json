@@ -80,14 +80,7 @@
         "attributeUpdates": [],
         "rpc": [
           {
-            "tag": "off",
-            "type": "bit",
-            "functionCode": 5,
-            "objectsCount": 1,
-            "address": 1
-          },
-          {
-            "tag": "on",
+            "tag": "setRunning",
             "type": "bit",
             "functionCode": 5,
             "objectsCount": 1,
@@ -182,14 +175,7 @@
         "attributeUpdates": [],
         "rpc": [
           {
-            "tag": "off",
-            "type": "bit",
-            "functionCode": 5,
-            "objectsCount": 1,
-            "address": 1
-          },
-          {
-            "tag": "on",
+            "tag": "setRunning",
             "type": "bit",
             "functionCode": 5,
             "objectsCount": 1,
@@ -261,14 +247,7 @@
         "attributeUpdates": [],
         "rpc": [
           {
-            "tag": "off",
-            "type": "bit",
-            "functionCode": 5,
-            "objectsCount": 1,
-            "address": 1
-          },
-          {
-            "tag": "on",
+            "tag": "setRunning",
             "type": "bit",
             "functionCode": 5,
             "objectsCount": 1,
@@ -361,14 +340,7 @@
         "attributeUpdates": [],
         "rpc": [
           {
-            "tag": "off",
-            "type": "bit",
-            "functionCode": 5,
-            "objectsCount": 1,
-            "address": 1
-          },
-          {
-            "tag": "on",
+            "tag": "setRunning",
             "type": "bit",
             "functionCode": 5,
             "objectsCount": 1,
@@ -454,14 +426,7 @@
         "attributeUpdates": [],
         "rpc": [
           {
-            "tag": "off",
-            "type": "bit",
-            "functionCode": 5,
-            "objectsCount": 1,
-            "address": 1
-          },
-          {
-            "tag": "on",
+            "tag": "setRunning",
             "type": "bit",
             "functionCode": 5,
             "objectsCount": 1,
