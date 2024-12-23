@@ -67,6 +67,8 @@ class DrillingRigEmulator:
         self.__drilling_mud_device.on()
         self.__drawwork_device.on()
         self.__drilling_bit_device.on()
+        self.__preventer_device.on()
+        self.__drilling_rig_device.on()
 
     async def __start_modbus_servers(self):
         server_tasks = [self.__start_server(port, context) for port, context in self.__device_context.items()]

@@ -18,7 +18,7 @@ class DrillingMud(Device):
         self.__mud_level_sensor = MudLevelSensor(address=4, level=70)
         self.__mud_pressure_sensor = MudPressureSensor(address=5, pressure=30)
         self.__mud_temperature_sensor = MudTemperatureSensor(address=6, temperature=50)
-        self.__mud_volume_sensor = MudVolumeSensor(address=7,volume=90)
+        self.__mud_volume_sensor = MudVolumeSensor(address=7, volume=90)
 
         self._init_storage(self.get_all_sensors_values().values())
 

@@ -31,8 +31,18 @@ class Device:
     def on(self):
         self._running = True
 
+        self._on()
+
+    def _on(self):
+        self._update_storage(1, {1: True})
+
     def off(self):
         self._running = False
+
+        self._off()
+
+    def _off(self):
+        self._update_storage(1, {1: False})
 
     def _init_storage(self, sensors_values):
         self.__storage.store['h'] = ModbusSequentialDataBlock(1, self._create_initial_values(sensors_values))
@@ -45,7 +55,7 @@ class Device:
         return self.__storage.getValues(function_code, address, count=1)
 
     def __update_running_status(self):
-        running = self._read_storage(1, 1)
+        running = bool(self._read_storage(1, 1)[0])
 
         if running != self._running:
             self._running = running

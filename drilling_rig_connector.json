@@ -23,7 +23,15 @@
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
-        "attributes": [],
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
         "timeseries": [
           {
             "tag": "temperature",
@@ -70,7 +78,22 @@
           }
         ],
         "attributeUpdates": [],
-        "rpc": []
+        "rpc": [
+          {
+            "tag": "off",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "on",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
       },
       {
         "host": "0.0.0.0",
@@ -94,7 +117,15 @@
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
-        "attributes": [],
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
         "timeseries": [
           {
             "tag": "gasCut",
@@ -149,7 +180,22 @@
           }
         ],
         "attributeUpdates": [],
-        "rpc": []
+        "rpc": [
+          {
+            "tag": "off",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "on",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
       },
       {
         "host": "0.0.0.0",
@@ -173,7 +219,15 @@
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
-        "attributes": [],
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
         "timeseries": [
           {
             "tag": "lineHoistSpeed",
@@ -205,7 +259,22 @@
           }
         ],
         "attributeUpdates": [],
-        "rpc": []
+        "rpc": [
+          {
+            "tag": "off",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "on",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
       },
       {
         "host": "0.0.0.0",
@@ -229,7 +298,15 @@
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
-        "attributes": [],
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
         "timeseries": [
           {
             "tag": "equipmentTemperature",
@@ -282,7 +359,22 @@
           }
         ],
         "attributeUpdates": [],
-        "rpc": []
+        "rpc": [
+          {
+            "tag": "off",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "on",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
       },
       {
         "host": "0.0.0.0",
@@ -306,7 +398,15 @@
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
-        "attributes": [],
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
         "timeseries": [
           {
             "tag": "length",
@@ -352,9 +452,23 @@
           }
         ],
         "attributeUpdates": [],
-        "rpc": []
+        "rpc": [
+          {
+            "tag": "off",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "on",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
       }
     ]
-  },
-  "id": "e8e8a64e-6c6a-4b9f-9dc7-04fbb72979be"
+  }
 }
