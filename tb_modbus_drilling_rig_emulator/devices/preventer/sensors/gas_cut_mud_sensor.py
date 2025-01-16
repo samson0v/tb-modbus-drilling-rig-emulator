@@ -1,0 +1,14 @@
+from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
+
+
+class GasCutMudSensor(Sensor):
+    def __init__(self, address, level):
+        super().__init__(address)
+        self.__level = level
+
+    @property
+    def level(self):
+        return self.__level
+
+    def update(self, level):
+        self.__level = level
