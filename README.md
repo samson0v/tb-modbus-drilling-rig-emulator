@@ -73,6 +73,450 @@ ThingsBoard IoT Gateway.
 | Vibration Sensor    |      15       | HR                   |              6 |
 | Running             |     False     | CO                   |              1 |
 
+## Gateway Modbus Connector Config
+
+```json
+{
+  "master": {
+    "slaves": [
+      {
+        "host": "0.0.0.0",
+        "port": 5021,
+        "type": "tcp",
+        "method": "socket",
+        "timeout": 3,
+        "byteOrder": "BIG",
+        "wordOrder": "LITTLE",
+        "retries": true,
+        "retryOnEmpty": true,
+        "retryOnInvalid": true,
+        "pollPeriod": 1000,
+        "unitId": 1,
+        "deviceName": "Drilling Bit",
+        "deviceType": "default",
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
+        "connectAttemptTimeMs": 3000,
+        "connectAttemptCount": 3,
+        "waitAfterFailedAttemptsMs": 30000,
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
+        "timeseries": [
+          {
+            "tag": "temperature",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 0
+          },
+          {
+            "tag": "position",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 1,
+            "divider": 10
+          },
+          {
+            "tag": "vibration",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "pressure",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 3
+          },
+          {
+            "tag": "rop",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 4
+          },
+          {
+            "tag": "depth",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 5
+          }
+        ],
+        "attributeUpdates": [],
+        "rpc": [
+          {
+            "tag": "setRunning",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
+      },
+      {
+        "host": "0.0.0.0",
+        "port": 5022,
+        "type": "tcp",
+        "method": "socket",
+        "timeout": 3,
+        "byteOrder": "BIG",
+        "wordOrder": "LITTLE",
+        "retries": true,
+        "retryOnEmpty": true,
+        "retryOnInvalid": true,
+        "pollPeriod": 1000,
+        "unitId": 2,
+        "deviceName": "Drilling Mud",
+        "deviceType": "default",
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
+        "connectAttemptTimeMs": 3000,
+        "connectAttemptCount": 3,
+        "waitAfterFailedAttemptsMs": 30000,
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
+        "timeseries": [
+          {
+            "tag": "gasCut",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 0
+          },
+          {
+            "tag": "density",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 1,
+            "divider": 10
+          },
+          {
+            "tag": "flowRate",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "level",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 3,
+            "divider": 10
+          },
+          {
+            "tag": "pressure",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 4
+          },
+          {
+            "tag": "temperature",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 5
+          },
+          {
+            "tag": "volume",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 6
+          }
+        ],
+        "attributeUpdates": [],
+        "rpc": [
+          {
+            "tag": "setRunning",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
+      },
+      {
+        "host": "0.0.0.0",
+        "port": 5023,
+        "type": "tcp",
+        "method": "socket",
+        "timeout": 3,
+        "byteOrder": "BIG",
+        "wordOrder": "LITTLE",
+        "retries": true,
+        "retryOnEmpty": true,
+        "retryOnInvalid": true,
+        "pollPeriod": 1000,
+        "unitId": 3,
+        "deviceName": "Drilling Rig",
+        "deviceType": "default",
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
+        "connectAttemptTimeMs": 3000,
+        "connectAttemptCount": 3,
+        "waitAfterFailedAttemptsMs": 30000,
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
+        "timeseries": [
+          {
+            "tag": "lineHoistSpeed",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 0
+          },
+          {
+            "tag": "hookLoad",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "speed",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "pressure",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 3
+          }
+        ],
+        "attributeUpdates": [],
+        "rpc": [
+          {
+            "tag": "setRunning",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
+      },
+      {
+        "host": "0.0.0.0",
+        "port": 5024,
+        "type": "tcp",
+        "method": "socket",
+        "timeout": 3,
+        "byteOrder": "BIG",
+        "wordOrder": "LITTLE",
+        "retries": true,
+        "retryOnEmpty": true,
+        "retryOnInvalid": true,
+        "pollPeriod": 1000,
+        "unitId": 4,
+        "deviceName": "Preventer",
+        "deviceType": "default",
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
+        "connectAttemptTimeMs": 3000,
+        "connectAttemptCount": 3,
+        "waitAfterFailedAttemptsMs": 30000,
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
+        "timeseries": [
+          {
+            "tag": "equipmentTemperature",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 0
+          },
+          {
+            "tag": "vibration",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "mudTemperature",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "flowRate",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 3
+          },
+          {
+            "tag": "gasCut",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 4
+          },
+          {
+            "tag": "leak",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 5
+          },
+          {
+            "tag": "pressure",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 6
+          }
+        ],
+        "attributeUpdates": [],
+        "rpc": [
+          {
+            "tag": "setRunning",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
+      },
+      {
+        "host": "0.0.0.0",
+        "port": 5025,
+        "type": "tcp",
+        "method": "socket",
+        "timeout": 3,
+        "byteOrder": "BIG",
+        "wordOrder": "LITTLE",
+        "retries": true,
+        "retryOnEmpty": true,
+        "retryOnInvalid": true,
+        "pollPeriod": 1000,
+        "unitId": 5,
+        "deviceName": "Drawwork",
+        "deviceType": "default",
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
+        "connectAttemptTimeMs": 3000,
+        "connectAttemptCount": 3,
+        "waitAfterFailedAttemptsMs": 30000,
+        "attributes": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ],
+        "timeseries": [
+          {
+            "tag": "length",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 0
+          },
+          {
+            "tag": "speed",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 1
+          },
+          {
+            "tag": "inclination",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "position",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 3
+          },
+          {
+            "tag": "tension",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 4
+          },
+          {
+            "tag": "vibration",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 5
+          }
+        ],
+        "attributeUpdates": [],
+        "rpc": [
+          {
+            "tag": "setRunning",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 1
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
 ## Installation
 
 1. Pull emulator docker image:
