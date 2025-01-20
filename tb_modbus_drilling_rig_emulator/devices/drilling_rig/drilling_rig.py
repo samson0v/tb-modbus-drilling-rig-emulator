@@ -12,7 +12,7 @@ class DrillingRig(Device):
         self.__drilling_line_hoist_speed_sensor = DrillingLineHoistSpeedSensor(address=1, speed=0)
         self.__hook_load_sensor = HookLoadSensor(address=2, load=0)
         self.__rotary_speed_sensor = RotarySpeedSensor(address=3, speed=0)
-        self.__mud_pressure_sensor = MudPressureSensor(address=4, pressure=15)
+        self.__mud_pressure_sensor = MudPressureSensor(address=4, pressure=0)
 
         self._init_storage(self.get_all_sensors_values().values())
 
@@ -40,6 +40,24 @@ class DrillingRig(Device):
     def mud_pressure(self):
         return self.__mud_pressure_sensor.pressure
 
+    def on(self):
+        super().on()
+
+        self.__hook_load_sensor.set_init_value()
+        self.__mud_pressure_sensor.set_init_value()
+        self.__rotary_speed_sensor.set_init_value()
+        self.__drilling_line_hoist_speed_sensor.set_init_value()
+
+    def off(self):
+        super().off()
+
+        self.__hook_load_sensor.update(load=0)
+        self.__mud_pressure_sensor.update(pressure=0)
+        self.__rotary_speed_sensor.update(speed=0)
+        self.__drilling_line_hoist_speed_sensor.update(speed=0)
+
+        self._update_storage(6, self.get_all_sensors_values())
+
     def get_all_sensors_values(self) -> dict:
         return {
             self.__drilling_line_hoist_speed_sensor.address: self.__drilling_line_hoist_speed_sensor.speed,
@@ -52,4 +70,7 @@ class DrillingRig(Device):
         self.update_state()
 
         if self._running:
-            self._update_storage(6, self.get_all_sensors_values().values())
+            self.__hook_load_sensor.update()
+            self.__mud_pressure_sensor.update()
+            self.__rotary_speed_sensor.update()
+            self._update_storage(6, self.get_all_sensors_values())

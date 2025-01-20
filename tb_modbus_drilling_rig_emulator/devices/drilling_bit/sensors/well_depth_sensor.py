@@ -2,13 +2,10 @@ from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
 class WellDepthSensor(Sensor):
-    def __init__(self, address):
+    def __init__(self, address, depth):
         super().__init__(address)
-        self.__current_depth = 0
+        self.__well_depth = depth
 
     @property
-    def current_depth(self):
-        return self.__current_depth
-
-    def update(self, speed):
-        self.__current_depth += speed
+    def well_depth(self):
+        return self.__well_depth

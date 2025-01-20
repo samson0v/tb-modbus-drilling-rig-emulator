@@ -45,6 +45,7 @@ class Device:
         self._update_storage(1, {1: False})
 
     def _init_storage(self, sensors_values):
+        print(sensors_values)
         self.__storage.store['h'] = ModbusSequentialDataBlock(1, self._create_initial_values(sensors_values))
 
     def _update_storage(self, function_code, values):

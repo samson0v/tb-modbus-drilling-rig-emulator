@@ -1,3 +1,4 @@
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_DRILLING_LINE_HOIST_SPEED
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -10,5 +11,8 @@ class DrillingLineHoistSpeedSensor(Sensor):
     def speed(self):
         return self.__speed
 
-    def update(self):
-        pass
+    def set_init_value(self):
+        self.__speed = DRILLING_RIG_DRILLING_LINE_HOIST_SPEED
+
+    def update(self, speed):
+        self.__speed = speed

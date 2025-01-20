@@ -26,13 +26,12 @@ class DrillingRigEmulator:
 
         self.__monitoring_interval = monitoring_interval
         self.__drilling_depth = drilling_depth
-        self.__drilling_speed = drilling_speed
 
         self.__last_monitoring_time = 0
 
         self.__drilling_mud_device = DrillingMud()
         self.__drilling_rig_device = DrillingRig()
-        self.__drilling_bit_device = DrillingBit(input_drilling_speed=drilling_speed)
+        self.__drilling_bit_device = DrillingBit(self.__drilling_depth, drilling_speed)
         self.__preventer_device = Preventer()
         self.__drawwork_device = Drawwork()
 
@@ -64,9 +63,9 @@ class DrillingRigEmulator:
         await asyncio.gather(self.__start_modbus_servers(), self.__monitor_values())
 
     async def __start_drilling(self):
+        self.__drilling_bit_device.on()
         self.__drilling_mud_device.on()
         self.__drawwork_device.on()
-        self.__drilling_bit_device.on()
         self.__preventer_device.on()
         self.__drilling_rig_device.on()
 
@@ -84,6 +83,8 @@ class DrillingRigEmulator:
         self.__drilling_mud_device.off()
         self.__drawwork_device.off()
         self.__drilling_bit_device.off()
+        self.__drilling_rig_device.off()
+        self.__preventer_device.off()
 
         self.__log.info("Drilling rig has stopped.")
 
@@ -93,6 +94,8 @@ class DrillingRigEmulator:
                 if self.__last_monitoring_time + self.__monitoring_interval < int(time.time()):
                     self.__drilling_mud_device.update()
                     self.__drilling_bit_device.update(is_drilling_fluid_supplied=self.__drilling_mud_device.status)
+                    self.__drilling_rig_device.update()
+                    self.__preventer_device.update()
 
                     self.__log_values()
                     self.__check_conditions()
@@ -105,7 +108,7 @@ class DrillingRigEmulator:
             self.__stop_drilling()
 
     def __check_conditions(self):
-        if self.__drilling_bit_device.current_depth >= self.__drilling_depth:
+        if self.__drilling_bit_device.current_depth >= self.__drilling_bit_device.well_depth:
             self.__log.info("Drilling rig has reached the drilling depth. Stopping the drilling process.")
             self.__stop_drilling()
 
@@ -115,10 +118,11 @@ class DrillingRigEmulator:
         self.__log.info(self.__drilling_rig_device)
         self.__log.info(self.__preventer_device)
         self.__log.info(self.__drawwork_device)
+        self.__log.info('----------------------------------')
 
 
 if __name__ == '__main__':
-    drilling_rig_emulator = DrillingRigEmulator(drilling_depth=1000, drilling_speed=20, monitoring_interval=2)
+    drilling_rig_emulator = DrillingRigEmulator(drilling_depth=2000, drilling_speed=35, monitoring_interval=2)
     try:
         asyncio.run(drilling_rig_emulator.run())
     except KeyboardInterrupt:

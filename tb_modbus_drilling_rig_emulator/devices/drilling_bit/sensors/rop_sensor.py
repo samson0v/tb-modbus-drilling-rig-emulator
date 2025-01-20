@@ -14,5 +14,5 @@ class ROPSensor(Sensor):
     def speed(self, speed):
         self.__speed = speed
 
-    def update(self):
+    def update(self, speed=None):
         pass

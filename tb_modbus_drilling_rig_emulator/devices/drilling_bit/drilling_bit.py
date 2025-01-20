@@ -10,26 +10,30 @@ from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.well_depth_sen
 
 
 class DrillingBit(Device):
-    def __init__(self, input_drilling_speed):
+    def __init__(self, input_drilling_depth, input_drilling_speed):
         super().__init__()
 
         self.__bottom_hole_temperature_sensor = BottomHoleTemperatureSensor(address=1, temperature=0)
         self.__drill_bit_position_sensor = DrillBitPositionSensor(address=2, position=0)
-        self.__drill_bit_vibration_sensor = DrillBitVibrationSensor(address=3, vibration_level=20)
-        self.__mud_pressure_sensor = MudPressureSensor(address=4, pressure=25)
+        self.__drill_bit_vibration_sensor = DrillBitVibrationSensor(address=3, vibration_level=0)
+        self.__mud_pressure_sensor = MudPressureSensor(address=4, pressure=0)
         self.__rop_sensor = ROPSensor(address=5, speed=input_drilling_speed)
-        self.__well_depth_sensor = WellDepthSensor(address=6)
+        self.__well_depth_sensor = WellDepthSensor(address=6, depth=input_drilling_depth)
+
+        self.__bottom_hole_temperature_sensor.set_init_value()
+        self.__drill_bit_vibration_sensor.set_init_value()
+        self.__mud_pressure_sensor.set_init_value()
 
         self._init_storage(self.get_all_sensors_values().values())
 
     def __str__(self):
         return f"DrillingBit(current_depth={self.current_depth}, temperature={self.temperature}, " \
-               f"vibration_level={self.vibration_level}, position={self.position}, pressure={self.pressure}, " \
-               f"speed={self.speed})"
+               f"vibration_level={self.vibration_level}, pressure={self.pressure}, " \
+               f"speed={self.speed}), state={self._running}"
 
     @property
     def current_depth(self):
-        return self.__well_depth_sensor.current_depth
+        return self.__drill_bit_position_sensor.position
 
     @property
     def temperature(self):
@@ -40,10 +44,6 @@ class DrillingBit(Device):
         return self.__drill_bit_vibration_sensor.vibration_level
 
     @property
-    def position(self):
-        return self.__drill_bit_position_sensor.position
-
-    @property
     def pressure(self):
         return self.__mud_pressure_sensor.pressure
 
@@ -51,18 +51,45 @@ class DrillingBit(Device):
     def speed(self):
         return self.__rop_sensor.speed
 
-    def off(self):
-        self.__rop_sensor.speed = 0
+    @property
+    def well_depth(self):
+        return self.__well_depth_sensor.well_depth
 
+    def on(self):
+        super().on()
+
+        self.__bottom_hole_temperature_sensor.set_init_value()
+        self.__drill_bit_vibration_sensor.set_init_value()
+        self.__mud_pressure_sensor.set_init_value()
+
+    def off(self):
         super().off()
+
+        self.__drill_bit_vibration_sensor.update(0)
+        self.__mud_pressure_sensor.update(0)
+
+        self._update_storage(6, self.get_all_sensors_values())
+
+    def __update_speed_state(self):
+        drilling_speed = self._read_storage(3, 5)[0]
+
+        if drilling_speed != self.__rop_sensor.speed and drilling_speed > 0 \
+                and (drilling_speed - self.__rop_sensor.speed) <= 1000:
+            self.__rop_sensor.speed = drilling_speed
+
+    def update_state(self):
+        super().update_state()
+
+        self.__update_speed_state()
 
     def update(self, is_drilling_fluid_supplied):
         self.update_state()
 
         if self._running:
             self.__bottom_hole_temperature_sensor.update(is_drilling_fluid_supplied)
-            self.__well_depth_sensor.update(self.__rop_sensor.speed)
-            self.__drill_bit_position_sensor.update(self.__well_depth_sensor.current_depth + 0.2)
+            self.__drill_bit_position_sensor.update(self.__rop_sensor.speed)
+            self.__drill_bit_vibration_sensor.update()
+            self.__mud_pressure_sensor.update()
 
             self._update_storage(6, self.get_all_sensors_values())
 
@@ -73,5 +100,5 @@ class DrillingBit(Device):
             self.__drill_bit_vibration_sensor.address: self.__drill_bit_vibration_sensor.vibration_level,
             self.__mud_pressure_sensor.address: self.__mud_pressure_sensor.pressure,
             self.__rop_sensor.address: self.__rop_sensor.speed,
-            self.__well_depth_sensor.address: self.__well_depth_sensor.current_depth
+            self.__well_depth_sensor.address: self.__well_depth_sensor.well_depth
         }

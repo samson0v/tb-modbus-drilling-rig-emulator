@@ -38,43 +38,42 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "position",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1,
-            "divider": 10
+            "address": 2
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           },
           {
-            "tag": "rop",
+            "tag": "drillingSpeed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 5
           },
           {
             "tag": "depth",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 6
           }
         ],
         "attributeUpdates": [],
@@ -99,14 +98,10 @@
         "retries": true,
         "retryOnEmpty": true,
         "retryOnInvalid": true,
-        "pollPeriod": 1000,
+        "pollPeriod": 3000,
         "unitId": 2,
         "deviceName": "Drilling Mud",
         "deviceType": "default",
-        "reportStrategy": {
-          "type": "ON_CHANGE_OR_REPORT_PERIOD",
-          "reportPeriod": 10000
-        },
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
@@ -117,6 +112,20 @@
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "tankCapacity",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 7
+          },
+          {
+            "tag": "opened",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 2
           }
         ],
         "timeseries": [
@@ -125,14 +134,14 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "density",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1,
+            "address": 2,
             "divider": 10
           },
           {
@@ -140,32 +149,24 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
-            "tag": "level",
-            "type": "16int",
-            "functionCode": 3,
-            "objectsCount": 1,
-            "address": 3,
-            "divider": 10
-          },
-          {
-            "tag": "pressure",
+            "tag": "liquidVolume",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
             "address": 4
           },
           {
-            "tag": "temperature",
+            "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
             "address": 5
           },
           {
-            "tag": "volume",
+            "tag": "temperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
@@ -220,28 +221,28 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "hookLoad",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 2
           },
           {
             "tag": "speed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           }
         ],
         "attributeUpdates": [],
@@ -292,49 +293,49 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 2
           },
           {
             "tag": "mudTemperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "flowRate",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           },
           {
             "tag": "gasCut",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 5
           },
           {
             "tag": "leak",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 6
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 6
+            "address": 7
           }
         ],
         "attributeUpdates": [],

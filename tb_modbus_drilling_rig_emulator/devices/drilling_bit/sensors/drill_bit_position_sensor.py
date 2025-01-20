@@ -8,7 +8,7 @@ class DrillBitPositionSensor(Sensor):
 
     @property
     def position(self):
-        return self._as_int(self.__position)
+        return self.__position
 
-    def update(self, position):
-        self.__position = position
+    def update(self, speed):
+        self.__position += speed

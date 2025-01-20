@@ -60,11 +60,43 @@ class Preventer(Device):
     def pressure(self):
         return self.__well_pressure_sensor.pressure
 
+    def on(self):
+        super().on()
+
+        self.__equipment_temperature_sensor.set_init_value()
+        self.__equipment_vibration_sensor.set_init_value()
+        self.__mud_temperature_sensor.set_init_value()
+        self.__flow_rate_sensor.set_init_value()
+        self.__gas_cut_mud_sensor.set_init_value()
+        self.__system_leak_detection_sensor.set_init_value()
+        self.__well_pressure_sensor.set_init_value()
+
+    def off(self):
+        super().off()
+
+        self.__equipment_temperature_sensor.update(temperature=0)
+        self.__equipment_vibration_sensor.update(vibration=0)
+        self.__mud_temperature_sensor.update(temperature=0)
+        self.__flow_rate_sensor.update(flow_rate=0)
+        self.__gas_cut_mud_sensor.update(level=0)
+        self.__system_leak_detection_sensor.update(level=0)
+        self.__well_pressure_sensor.update(pressure=0)
+
+        self._update_storage(6, self.get_all_sensors_values())
+
     def update(self):
         self.update_state()
 
         if self._running:
-            self._update_storage(6, self.get_all_sensors_values().values())
+            self.__equipment_temperature_sensor.update()
+            self.__equipment_vibration_sensor.update()
+            self.__mud_temperature_sensor.update()
+            self.__flow_rate_sensor.update()
+            self.__gas_cut_mud_sensor.update()
+            self.__system_leak_detection_sensor.update()
+            self.__well_pressure_sensor.update()
+
+            self._update_storage(6, self.get_all_sensors_values())
 
     def get_all_sensors_values(self) -> dict:
         return {

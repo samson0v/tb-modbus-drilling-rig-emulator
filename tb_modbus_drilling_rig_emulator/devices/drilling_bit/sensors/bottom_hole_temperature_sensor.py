@@ -1,3 +1,4 @@
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_BIT_TEMPERATURE
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -22,3 +23,6 @@ class BottomHoleTemperatureSensor(Sensor):
 
     def __decrease_temperature(self, value):
         self.temperature -= value
+
+    def set_init_value(self):
+        self.temperature = DRILLING_BIT_TEMPERATURE
