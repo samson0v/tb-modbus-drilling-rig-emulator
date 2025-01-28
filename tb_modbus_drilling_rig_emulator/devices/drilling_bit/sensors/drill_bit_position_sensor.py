@@ -10,5 +10,8 @@ class DrillBitPositionSensor(Sensor):
     def position(self):
         return self.__position
 
+    def reset(self):
+        self.__position = 0
+
     def update(self, speed):
         self.__position += speed

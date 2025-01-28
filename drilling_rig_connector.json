@@ -1,4 +1,5 @@
 {
+  "logLevel": "DEBUG",
   "master": {
     "slaves": [
       {
@@ -30,6 +31,20 @@
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "depth",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 6
+          },
+          {
+            "tag": "rop",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 5
           }
         ],
         "timeseries": [
@@ -60,23 +75,24 @@
             "functionCode": 3,
             "objectsCount": 1,
             "address": 4
-          },
+          }
+        ],
+        "attributeUpdates": [
           {
-            "tag": "drillingSpeed",
+            "tag": "rop",
             "type": "16int",
-            "functionCode": 3,
+            "functionCode": 6,
             "objectsCount": 1,
             "address": 5
           },
           {
             "tag": "depth",
             "type": "16int",
-            "functionCode": 3,
+            "functionCode": 6,
             "objectsCount": 1,
             "address": 6
           }
         ],
-        "attributeUpdates": [],
         "rpc": [
           {
             "tag": "setRunning",
@@ -181,6 +197,13 @@
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "setOpened",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 2
           }
         ]
       },
@@ -364,10 +387,6 @@
         "unitId": 5,
         "deviceName": "Drawwork",
         "deviceType": "default",
-        "reportStrategy": {
-          "type": "ON_CHANGE_OR_REPORT_PERIOD",
-          "reportPeriod": 10000
-        },
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
@@ -378,6 +397,20 @@
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "direction",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "drawworkSpeed",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 3
           }
         ],
         "timeseries": [
@@ -386,42 +419,42 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "speed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 2
           },
           {
             "tag": "inclination",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "position",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           },
           {
             "tag": "tension",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 5
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 6
           }
         ],
         "attributeUpdates": [],
@@ -432,6 +465,20 @@
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "setDirection",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "drawworkSpeed",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 3
           }
         ]
       }

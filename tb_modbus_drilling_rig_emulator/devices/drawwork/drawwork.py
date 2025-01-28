@@ -11,19 +11,22 @@ class Drawwork(Device):
     def __init__(self):
         super().__init__()
 
+        self.direction = False
+        self.drawwork_speed = False
         self.__cable_length_sensor = CableLengthSensor(address=1, cable_length=0)
-        self.__hoist_speed_sensor = HoistSpeedSensor(address=2, speed=0)
+        self.__hoist_speed_sensor = HoistSpeedSensor(address=2, speed=5)
         self.__inclination_sensor = InclinationSensor(address=3, inclination=10)
         self.__position_sensor = PositionSensor(address=4, position=30)
         self.__tension_sensor = TensionSensor(address=5, tension=170)
         self.__vibration_sensor = VibrationSensor(address=6, vibration_level=15)
 
         self._init_storage(self.get_all_sensors_values().values())
+        self._init_storage([self.direction, self.drawwork_speed], registers_type='c', from_address=2)
 
     def __str__(self):
         return f"Drawwork(cable_length={self.__cable_length_sensor.cable_length}, hoist_speed={self.__hoist_speed_sensor.speed}, " \
-               f"inclination={self.__inclination_sensor.inclination}, position={self.__position_sensor.position}, tension={self.__tension_sensor.tension}, " \
-               f"vibration_level={self.__vibration_sensor.vibration_level})"
+               f"inclination={self.__inclination_sensor.inclination}, position={self.__position_sensor.position} " \
+               f"vibration_level={self.__vibration_sensor.vibration_level}, tension={self.__tension_sensor.tension})"
 
     @property
     def status(self):
@@ -67,4 +70,33 @@ class Drawwork(Device):
         self.update_state()
 
         if self._running:
-            self._update_storage(6, self.get_all_sensors_values().values())
+            self._update_storage(6, self.get_all_sensors_values())
+
+    def update_state(self):
+        super().update_state()
+
+        self.__update_direction_state()
+        self.__update_drawwork_speed()
+
+    def __update_direction_state(self):
+        direction = bool(self._read_storage(1, 2)[0])
+
+        if direction != self.direction:
+            self.direction = direction
+
+    def __update_drawwork_speed(self):
+        drawwork_speed = bool(self._read_storage(1, 3)[0])
+
+        if drawwork_speed != self.drawwork_speed:
+            self.drawwork_speed = drawwork_speed
+
+            if self.drawwork_speed:
+                self.__set_normal_speed()
+            else:
+                self.__set_slow_speed()
+
+    def __set_slow_speed(self):
+        self.__hoist_speed_sensor.update(5)
+
+    def __set_normal_speed(self):
+        self.__hoist_speed_sensor.update(15)

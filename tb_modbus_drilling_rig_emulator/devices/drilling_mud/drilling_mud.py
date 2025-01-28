@@ -22,6 +22,7 @@ class DrillingMud(Device):
         self.__mud_temperature_sensor = MudTemperatureSensor(address=6, temperature=0)
         self.__valve = False
 
+        self._init_storage([self.__valve], registers_type='c', from_address=2)
         self._init_storage(self.get_all_sensors_values().values())
 
     def __str__(self):
@@ -61,6 +62,10 @@ class DrillingMud(Device):
     def capacity(self):
         return self.__mud_volume_sensor.volume
 
+    @property
+    def valve(self):
+        return self.__valve
+
     def on(self):
         super().on()
 
@@ -99,6 +104,17 @@ class DrillingMud(Device):
             self.__mud_flow_rate_sensor.update()
 
             self._update_storage(6, self.get_all_sensors_values())
+
+    def update_state(self):
+        super().update_state()
+
+        self.__update_valve_state()
+
+    def __update_valve_state(self):
+        valve = bool(self._read_storage(1, 2)[0])
+
+        if valve != self.__valve:
+            self.__valve = valve
 
     def get_all_sensors_values(self):
         return {

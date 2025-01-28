@@ -9,3 +9,7 @@ class WellDepthSensor(Sensor):
     @property
     def well_depth(self):
         return self.__well_depth
+
+    @well_depth.setter
+    def well_depth(self, depth):
+        self.__well_depth = depth

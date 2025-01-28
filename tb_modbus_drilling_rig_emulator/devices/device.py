@@ -44,9 +44,10 @@ class Device:
     def _off(self):
         self._update_storage(1, {1: False})
 
-    def _init_storage(self, sensors_values):
+    def _init_storage(self, sensors_values, registers_type='h', from_address=1):
         print(sensors_values)
-        self.__storage.store['h'] = ModbusSequentialDataBlock(1, self._create_initial_values(sensors_values))
+        self.__storage.store[registers_type] = ModbusSequentialDataBlock(from_address,
+                                                                         self._create_initial_values(sensors_values))
 
     def _update_storage(self, function_code, values):
         for (address, value) in values.items():

@@ -93,7 +93,13 @@ class DrillingRigEmulator:
             while self._running:
                 if self.__last_monitoring_time + self.__monitoring_interval < int(time.time()):
                     self.__drilling_mud_device.update()
-                    self.__drilling_bit_device.update(is_drilling_fluid_supplied=self.__drilling_mud_device.status)
+                    self.__drawwork_device.update()
+
+                    is_drilling_fluid_supplied = self.__drilling_mud_device.status and self.__drilling_mud_device.valve
+
+                    self.__drilling_bit_device.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied,
+                                                      drawwork_direction=self.__drawwork_device.direction,
+                                                      is_drawwork_on=self.__drawwork_device.status)
                     self.__drilling_rig_device.update()
                     self.__preventer_device.update()
 

@@ -27,8 +27,8 @@ class DrillingBit(Device):
         self._init_storage(self.get_all_sensors_values().values())
 
     def __str__(self):
-        return f"DrillingBit(current_depth={self.current_depth}, temperature={self.temperature}, " \
-               f"vibration_level={self.vibration_level}, pressure={self.pressure}, " \
+        return f"DrillingBit(current_depth={self.current_depth}, well_depth={self.well_depth}, " \
+               f"vibration_level={self.vibration_level}, pressure={self.pressure}, temperature={self.temperature}, " \
                f"speed={self.speed}), state={self._running}"
 
     @property
@@ -77,15 +77,23 @@ class DrillingBit(Device):
                 and (drilling_speed - self.__rop_sensor.speed) <= 1000:
             self.__rop_sensor.speed = drilling_speed
 
+    def __update_well_depth_state(self):
+        well_depth = self._read_storage(3, 6)[0]
+
+        if well_depth != self.__well_depth_sensor.well_depth and well_depth > 0:
+            self.__well_depth_sensor.well_depth = well_depth
+            self.__drill_bit_position_sensor.reset()
+
     def update_state(self):
         super().update_state()
 
+        self.__update_well_depth_state()
         self.__update_speed_state()
 
-    def update(self, is_drilling_fluid_supplied):
+    def update(self, is_drilling_fluid_supplied, is_drawwork_on, drawwork_direction):
         self.update_state()
 
-        if self._running:
+        if self._running and not drawwork_direction and is_drawwork_on:
             self.__bottom_hole_temperature_sensor.update(is_drilling_fluid_supplied)
             self.__drill_bit_position_sensor.update(self.__rop_sensor.speed)
             self.__drill_bit_vibration_sensor.update()
