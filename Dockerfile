@@ -18,4 +18,4 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # Set the container command
-CMD [ "python3", "./tb_modbus_drilling_rig_emuator/drilling_rig_modbus_emulator.py" ]
+CMD [ "python3", "./tb_modbus_drilling_rig_emulator/drilling_rig_modbus_emulator.py" ]

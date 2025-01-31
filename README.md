@@ -77,6 +77,7 @@ ThingsBoard IoT Gateway.
 
 ```json
 {
+  "logLevel": "DEBUG",
   "master": {
     "slaves": [
       {
@@ -108,6 +109,20 @@ ThingsBoard IoT Gateway.
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "depth",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 6
+          },
+          {
+            "tag": "rop",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 5
           }
         ],
         "timeseries": [
@@ -116,46 +131,46 @@ ThingsBoard IoT Gateway.
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "position",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1,
-            "divider": 10
+            "address": 2
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
-          },
+            "address": 4
+          }
+        ],
+        "attributeUpdates": [
           {
             "tag": "rop",
             "type": "16int",
-            "functionCode": 3,
+            "functionCode": 6,
             "objectsCount": 1,
-            "address": 4
+            "address": 5
           },
           {
             "tag": "depth",
             "type": "16int",
-            "functionCode": 3,
+            "functionCode": 6,
             "objectsCount": 1,
-            "address": 5
+            "address": 6
           }
         ],
-        "attributeUpdates": [],
         "rpc": [
           {
             "tag": "setRunning",
@@ -177,14 +192,10 @@ ThingsBoard IoT Gateway.
         "retries": true,
         "retryOnEmpty": true,
         "retryOnInvalid": true,
-        "pollPeriod": 1000,
+        "pollPeriod": 3000,
         "unitId": 2,
         "deviceName": "Drilling Mud",
         "deviceType": "default",
-        "reportStrategy": {
-          "type": "ON_CHANGE_OR_REPORT_PERIOD",
-          "reportPeriod": 10000
-        },
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
@@ -195,6 +206,20 @@ ThingsBoard IoT Gateway.
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "tankCapacity",
+            "type": "16int",
+            "functionCode": 3,
+            "objectsCount": 1,
+            "address": 7
+          },
+          {
+            "tag": "opened",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 2
           }
         ],
         "timeseries": [
@@ -203,14 +228,14 @@ ThingsBoard IoT Gateway.
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "density",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1,
+            "address": 2,
             "divider": 10
           },
           {
@@ -218,32 +243,24 @@ ThingsBoard IoT Gateway.
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
-            "tag": "level",
-            "type": "16int",
-            "functionCode": 3,
-            "objectsCount": 1,
-            "address": 3,
-            "divider": 10
-          },
-          {
-            "tag": "pressure",
+            "tag": "liquidVolume",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
             "address": 4
           },
           {
-            "tag": "temperature",
+            "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
             "address": 5
           },
           {
-            "tag": "volume",
+            "tag": "temperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
@@ -258,6 +275,13 @@ ThingsBoard IoT Gateway.
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "setOpened",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 2
           }
         ]
       },
@@ -298,28 +322,28 @@ ThingsBoard IoT Gateway.
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "hookLoad",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 2
           },
           {
             "tag": "speed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           }
         ],
         "attributeUpdates": [],
@@ -370,49 +394,49 @@ ThingsBoard IoT Gateway.
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 2
           },
           {
             "tag": "mudTemperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "flowRate",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           },
           {
             "tag": "gasCut",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 5
           },
           {
             "tag": "leak",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 6
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 6
+            "address": 7
           }
         ],
         "attributeUpdates": [],
@@ -441,10 +465,6 @@ ThingsBoard IoT Gateway.
         "unitId": 5,
         "deviceName": "Drawwork",
         "deviceType": "default",
-        "reportStrategy": {
-          "type": "ON_CHANGE_OR_REPORT_PERIOD",
-          "reportPeriod": 10000
-        },
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
@@ -455,6 +475,20 @@ ThingsBoard IoT Gateway.
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "direction",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "drawworkSpeed",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 3
           }
         ],
         "timeseries": [
@@ -463,42 +497,42 @@ ThingsBoard IoT Gateway.
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 0
+            "address": 1
           },
           {
             "tag": "speed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 2
           },
           {
             "tag": "inclination",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 3
           },
           {
             "tag": "position",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 4
           },
           {
             "tag": "tension",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 5
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 6
           }
         ],
         "attributeUpdates": [],
@@ -509,6 +543,20 @@ ThingsBoard IoT Gateway.
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "setDirection",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 2
+          },
+          {
+            "tag": "drawworkSpeed",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 3
           }
         ]
       }

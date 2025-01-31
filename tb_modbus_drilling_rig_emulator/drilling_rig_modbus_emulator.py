@@ -78,8 +78,6 @@ class DrillingRigEmulator:
         await StartAsyncTcpServer(context=context, identity=self.__identity, address=("0.0.0.0", port))
 
     def __stop_drilling(self):
-        self._running = False
-
         self.__drilling_mud_device.off()
         self.__drawwork_device.off()
         self.__drilling_bit_device.off()
