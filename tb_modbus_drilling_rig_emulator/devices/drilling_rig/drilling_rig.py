@@ -40,6 +40,9 @@ class DrillingRig(Device):
     def mud_pressure(self):
         return self.__mud_pressure_sensor.pressure
 
+    def is_running(self):
+        return self._running
+
     def on(self):
         super().on()
 

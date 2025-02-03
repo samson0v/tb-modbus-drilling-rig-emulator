@@ -28,6 +28,7 @@ class DrillingRigEmulator:
         self.__drilling_depth = drilling_depth
 
         self.__last_monitoring_time = 0
+        self.__has_reached_drilling_depth = False
 
         self.__drilling_mud_device = DrillingMud()
         self.__drilling_rig_device = DrillingRig()
@@ -51,11 +52,11 @@ class DrillingRigEmulator:
 
     def __setup_device_context(self):
         return {
-            5021: ModbusServerContext(slaves={1: self.__drilling_bit_device.storage}, single=False),
-            5022: ModbusServerContext(slaves={2: self.__drilling_mud_device.storage}, single=False),
-            5023: ModbusServerContext(slaves={3: self.__drilling_rig_device.storage}, single=False),
-            5024: ModbusServerContext(slaves={4: self.__preventer_device.storage}, single=False),
-            5025: ModbusServerContext(slaves={5: self.__drawwork_device.storage}, single=False)
+            5035: ModbusServerContext(slaves={1: self.__drilling_bit_device.storage}, single=False),
+            5036: ModbusServerContext(slaves={2: self.__drilling_mud_device.storage}, single=False),
+            5037: ModbusServerContext(slaves={3: self.__drilling_rig_device.storage}, single=False),
+            5038: ModbusServerContext(slaves={4: self.__preventer_device.storage}, single=False),
+            5039: ModbusServerContext(slaves={5: self.__drawwork_device.storage}, single=False)
         }
 
     async def run(self):
@@ -102,7 +103,7 @@ class DrillingRigEmulator:
                     self.__preventer_device.update()
 
                     self.__log_values()
-                    self.__check_conditions()
+                    await self.__check_conditions()
 
                     self.__last_monitoring_time = time.time()
                 else:
@@ -111,10 +112,22 @@ class DrillingRigEmulator:
             self.__log.error(f"Error: {e}")
             self.__stop_drilling()
 
-    def __check_conditions(self):
+    async def __check_conditions(self):
         if self.__drilling_bit_device.current_depth >= self.__drilling_bit_device.well_depth:
             self.__log.info("Drilling rig has reached the drilling depth. Stopping the drilling process.")
+            self.__has_reached_drilling_depth = True
             self.__stop_drilling()
+
+        if self.__drilling_bit_device.current_depth <= self.__drilling_bit_device.well_depth and self.__has_reached_drilling_depth:
+            await self.__start_drilling()
+            self.__has_reached_drilling_depth = False
+
+        if self.__drilling_bit_device.is_running():
+            if not self.__drilling_rig_device.is_running():
+                self.__drilling_rig_device.on()
+        else:
+            if self.__drilling_rig_device.is_running():
+                self.__drilling_rig_device.off()
 
     def __log_values(self):
         self.__log.info(self.__drilling_bit_device)

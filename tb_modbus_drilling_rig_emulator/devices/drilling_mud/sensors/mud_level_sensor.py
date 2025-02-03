@@ -1,5 +1,6 @@
 from random import uniform
 
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_MAX_LEVEL, DRILLING_MUD_MIN_LEVEL
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -17,10 +18,7 @@ class MudLevelSensor(Sensor):
         return int(value / self.__tank_capacity * 100)
 
     def update(self):
-        self.__level = round(self.__level + uniform(-20, 20), 2)
+        level = round(self.__level + uniform(-20, 20), 2)
 
-        if self.__as_percentage(self.__level) <= 10:
-            raise ValueError("Mud level is too low")
-
-        if self.__as_percentage(self.__level) >= 100:
-            raise ValueError("Mud level is too high")
+        if DRILLING_MUD_MAX_LEVEL > self.__as_percentage(self.__level) > DRILLING_MUD_MIN_LEVEL:
+            self.__level = level

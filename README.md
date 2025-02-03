@@ -82,7 +82,7 @@ ThingsBoard IoT Gateway.
     "slaves": [
       {
         "host": "0.0.0.0",
-        "port": 5021,
+        "port": 5035,
         "type": "tcp",
         "method": "socket",
         "timeout": 3,
@@ -183,7 +183,7 @@ ThingsBoard IoT Gateway.
       },
       {
         "host": "0.0.0.0",
-        "port": 5022,
+        "port": 5036,
         "type": "tcp",
         "method": "socket",
         "timeout": 3,
@@ -287,7 +287,7 @@ ThingsBoard IoT Gateway.
       },
       {
         "host": "0.0.0.0",
-        "port": 5023,
+        "port": 5037,
         "type": "tcp",
         "method": "socket",
         "timeout": 3,
@@ -359,7 +359,7 @@ ThingsBoard IoT Gateway.
       },
       {
         "host": "0.0.0.0",
-        "port": 5024,
+        "port": 5038,
         "type": "tcp",
         "method": "socket",
         "timeout": 3,
@@ -452,7 +452,7 @@ ThingsBoard IoT Gateway.
       },
       {
         "host": "0.0.0.0",
-        "port": 5025,
+        "port": 5039,
         "type": "tcp",
         "method": "socket",
         "timeout": 3,

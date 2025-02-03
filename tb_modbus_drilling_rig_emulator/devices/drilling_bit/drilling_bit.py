@@ -55,6 +55,9 @@ class DrillingBit(Device):
     def well_depth(self):
         return self.__well_depth_sensor.well_depth
 
+    def is_running(self):
+        return self._running
+
     def on(self):
         super().on()
 
