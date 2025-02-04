@@ -122,12 +122,12 @@ class DrillingRigEmulator:
             await self.__start_drilling()
             self.__has_reached_drilling_depth = False
 
-        if self.__drilling_bit_device.is_running():
-            if not self.__drilling_rig_device.is_running():
-                self.__drilling_rig_device.on()
+        if self.__drilling_rig_device.is_running():
+            if not self.__drilling_bit_device.is_running():
+                self.__drilling_bit_device.on()
         else:
-            if self.__drilling_rig_device.is_running():
-                self.__drilling_rig_device.off()
+            if self.__drilling_bit_device.is_running():
+                self.__drilling_bit_device.off()
 
     def __log_values(self):
         self.__log.info(self.__drilling_bit_device)

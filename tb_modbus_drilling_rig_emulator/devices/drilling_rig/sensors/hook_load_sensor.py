@@ -1,6 +1,4 @@
-from random import uniform
-
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_HOOK_LOAD
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_HOOK_LOAD, DRILLING_RIG_HOOK_LOAD_MAX, DRILLING_RIG_HOOK_LOAD_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -21,4 +19,4 @@ class HookLoadSensor(Sensor):
             self.__load = load
             return
 
-        self.__load = int(self.__load + uniform(-2, 2))
+        self.__load = self.generate_value(self.__load, 2, DRILLING_RIG_HOOK_LOAD_MIN, DRILLING_RIG_HOOK_LOAD_MAX)

@@ -1,6 +1,4 @@
-from random import uniform
-
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_TEMPERATURE
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_TEMPERATURE, DRILLING_MUD_TEMPERATURE_MAX, DRILLING_MUD_TEMPERATURE_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -18,7 +16,7 @@ class MudTemperatureSensor(Sensor):
             self.__temperature = temperature
             return
 
-        self.__temperature = int(self.__temperature + uniform(-1, 1))
+        self.__temperature = self.generate_value(self.__temperature, 2, DRILLING_MUD_TEMPERATURE_MIN, DRILLING_MUD_TEMPERATURE_MAX)
 
     def set_init_value(self):
         self.__temperature = DRILLING_MUD_TEMPERATURE

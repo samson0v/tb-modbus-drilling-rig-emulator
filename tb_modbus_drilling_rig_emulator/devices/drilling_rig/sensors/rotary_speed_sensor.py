@@ -1,5 +1,3 @@
-from random import uniform
-
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_RORATY_SPEED
 
@@ -21,4 +19,4 @@ class RotarySpeedSensor(Sensor):
             self.__speed = speed
             return
 
-        self.__speed = int(self.__speed + uniform(-1, 1))
+        self.__speed = self.generate_value(self.__speed, 1, 0, 100)

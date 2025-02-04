@@ -13,7 +13,7 @@ class Drawwork(Device):
 
         self.direction = False
         self.drawwork_speed = False
-        self.__cable_length_sensor = CableLengthSensor(address=1, cable_length=0)
+        self.__cable_length_sensor = CableLengthSensor(address=1, cable_length=100)
         self.__hoist_speed_sensor = HoistSpeedSensor(address=2, speed=5)
         self.__inclination_sensor = InclinationSensor(address=3, inclination=10)
         self.__position_sensor = PositionSensor(address=4, position=30)
@@ -70,6 +70,9 @@ class Drawwork(Device):
         self.update_state()
 
         if self._running:
+            self.__inclination_sensor.update()
+            self.__tension_sensor.update()
+            self.__vibration_sensor.update()
             self._update_storage(6, self.get_all_sensors_values())
 
     def update_state(self):

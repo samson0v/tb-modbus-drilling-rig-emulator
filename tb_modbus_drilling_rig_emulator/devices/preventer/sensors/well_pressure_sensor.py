@@ -1,6 +1,4 @@
-from random import uniform
-
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import PREVENTER_PRESSURE
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import PREVENTER_PRESSURE, PREVENTER_PRESSURE_MAX, PREVENTER_PRESSURE_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -18,7 +16,7 @@ class WellPressureSensor(Sensor):
             self.__pressure = pressure
             return
 
-        self.__pressure = int(self.__pressure + uniform(-4, 4))
+        self.__pressure = self.generate_value(self.__pressure, 4, PREVENTER_PRESSURE_MIN, PREVENTER_PRESSURE_MAX)
 
     def set_init_value(self):
         self.__pressure = PREVENTER_PRESSURE

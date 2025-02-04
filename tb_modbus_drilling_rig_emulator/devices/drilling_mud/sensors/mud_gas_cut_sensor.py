@@ -1,6 +1,4 @@
-from random import uniform
-
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_GAS_CUT
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_GAS_CUT, DRILLING_MUD_GAS_CUT_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -18,7 +16,7 @@ class MudGasCutSensor(Sensor):
             self.__level = level
             return
 
-        self.__level = int(self.__level + uniform(-1, 1))
+        self.__level = self.generate_value(self.__level, 1, DRILLING_MUD_GAS_CUT_MIN, DRILLING_MUD_GAS_CUT_MIN)
 
     def set_init_value(self):
         self.__level = DRILLING_MUD_GAS_CUT

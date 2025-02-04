@@ -1,5 +1,4 @@
-from random import uniform
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import PREVENTER_FLOW_RATE
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import PREVENTER_FLOW_RATE, PREVENTER_FLOW_RATE_MAX, PREVENTER_FLOW_RATE_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -17,7 +16,7 @@ class FlowRateSensor(Sensor):
             self.__flow_rate = flow_rate
             return
 
-        self.__flow_rate = int(self.__flow_rate + uniform(-1, 1))
+        self.__flow_rate = self.generate_value(self.__flow_rate, 1, PREVENTER_FLOW_RATE_MIN, PREVENTER_FLOW_RATE_MAX)
 
     def set_init_value(self):
         self.__flow_rate = PREVENTER_FLOW_RATE
