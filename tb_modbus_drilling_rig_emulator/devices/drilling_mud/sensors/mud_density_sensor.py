@@ -1,5 +1,3 @@
-from random import uniform
-
 from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_DENSITY
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
@@ -11,7 +9,7 @@ class MudDensitySensor(Sensor):
 
     @property
     def density(self):
-        return self._as_int(self.__density)
+        return self._as_int(self.__density / 10)
 
     @density.setter
     def density(self, density):
@@ -22,7 +20,7 @@ class MudDensitySensor(Sensor):
             self.__density = density
             return
 
-        self.__density = round(self.__density + uniform(-0.2, 0.2), 2)
+        self.__density = self.generate_value(self.__density, 2, 12, 15)
 
     def set_init_value(self):
         self.__density = DRILLING_MUD_DENSITY

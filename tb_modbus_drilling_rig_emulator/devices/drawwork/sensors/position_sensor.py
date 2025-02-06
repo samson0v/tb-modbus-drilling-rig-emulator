@@ -10,5 +10,12 @@ class PositionSensor(Sensor):
     def position(self):
         return self.__position
 
-    def update(self, position):
-        self.__position = position
+    def update(self, position, direction, speed):
+        if not direction:
+            self.__position = position
+        else:
+            if self.__position >= 0:
+                self.__position = self.__position - speed
+
+            if self.__position < 0:
+                self.__position = 0

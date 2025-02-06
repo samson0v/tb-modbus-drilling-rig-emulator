@@ -11,10 +11,12 @@ class BottomHoleTemperatureSensor(Sensor):
         if self.temperature >= 200 and not is_drilling_fluid_supplied:
             raise ValueError("Drilling bit temperature is too high")
 
-        if is_drilling_fluid_supplied and self.temperature <= 150:
+        if is_drilling_fluid_supplied and self.temperature <= 140:
             self.__increase_temperature(1)
         elif is_drilling_fluid_supplied and self.temperature > 150:
             self.__decrease_temperature(1)
+        elif is_drilling_fluid_supplied and 140 <= self.temperature <= 150:
+            self.temperature = self.generate_value(self.temperature, 5, 140, 150)
         elif not is_drilling_fluid_supplied:
             self.__increase_temperature(10)
 
