@@ -74,9 +74,7 @@ class Preventer(Device):
     def off(self):
         super().off()
 
-        self.__equipment_temperature_sensor.update(temperature=0)
         self.__equipment_vibration_sensor.update(vibration=0)
-        self.__mud_temperature_sensor.update(temperature=0)
         self.__flow_rate_sensor.update(flow_rate=0)
         self.__gas_cut_mud_sensor.update(level=0)
         self.__system_leak_detection_sensor.update(level=0)
@@ -95,8 +93,11 @@ class Preventer(Device):
             self.__gas_cut_mud_sensor.update()
             self.__system_leak_detection_sensor.update()
             self.__well_pressure_sensor.update()
+        else:
+            self.__equipment_temperature_sensor.cooling()
+            self.__mud_temperature_sensor.cooling()
 
-            self._update_storage(6, self.get_all_sensors_values())
+        self._update_storage(6, self.get_all_sensors_values())
 
     def get_all_sensors_values(self) -> dict:
         return {

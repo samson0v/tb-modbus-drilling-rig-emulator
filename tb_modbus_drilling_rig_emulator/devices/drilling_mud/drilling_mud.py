@@ -84,7 +84,6 @@ class DrillingMud(Device):
         self.__valve = False
         self._update_storage(1, {2: self.__valve})
 
-        self.__mud_temperature_sensor.update(temperature=0)
         self.__gas_cut_mud_sensor.update(level=0)
         self.__mud_pressure_sensor.update(pressure=0)
         self.__mud_density_sensor.update(density=0)
@@ -93,7 +92,7 @@ class DrillingMud(Device):
         self._update_storage(6, self.get_all_sensors_values())
 
     def update(self):
-        self.update_state()
+        self.__mud_temperature_sensor.cooling()
 
         if self._running:
             self.__mud_level_sensor.update()
@@ -102,8 +101,10 @@ class DrillingMud(Device):
             self.__mud_pressure_sensor.update()
             self.__mud_density_sensor.update()
             self.__mud_flow_rate_sensor.update()
+        else:
+            self.__mud_temperature_sensor.cooling()
 
-            self._update_storage(6, self.get_all_sensors_values())
+        self._update_storage(6, self.get_all_sensors_values())
 
     def update_state(self):
         super().update_state()

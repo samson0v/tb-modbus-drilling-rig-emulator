@@ -68,7 +68,6 @@ class DrillingBit(Device):
     def off(self):
         super().off()
 
-        self.__bottom_hole_temperature_sensor.temperature = 0
         self.__drill_bit_vibration_sensor.update(0)
         self.__mud_pressure_sensor.update(0)
 
@@ -102,8 +101,10 @@ class DrillingBit(Device):
             self.__drill_bit_position_sensor.update(self.__rop_sensor.speed)
             self.__drill_bit_vibration_sensor.update()
             self.__mud_pressure_sensor.update()
+        else:
+            self.__bottom_hole_temperature_sensor.cooling()
 
-            self._update_storage(6, self.get_all_sensors_values())
+        self._update_storage(6, self.get_all_sensors_values())
 
     def get_all_sensors_values(self):
         return {
