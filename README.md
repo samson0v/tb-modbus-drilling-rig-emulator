@@ -569,11 +569,11 @@ ThingsBoard IoT Gateway.
 
 1. Pull emulator docker image:
     ```bash
-    docker pull thingsboard/tb-modbus-pool-emulator:latest
+    docker pull thingsboard/tb-modbus-drilling-rig-emulator:latest
     ```
 2. Run the emulator using the following command, which will start the emulator on ports 5021-5034:
     ```bash
-    docker run --rm -d --name tb-modbus-pool-emulator -p 5021-5025:5021-5025 tb-modbus-pool-emulator
+    docker run --rm -d --name tb-modbus-drilling-rig-emulator -p 5035-5039:5035-5039 tb-modbus-drilling-rig-emulator
     ```
    ***Note***: *If you run the gateway first - it may take up to 2 minutes since the emulator starts to the gateway
    connects to it*.
