@@ -1,4 +1,4 @@
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_MUD_PRESSURE
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_MUD_PRESSURE, DRILLING_RIG_MUD_PRESSURE_MAX, DRILLING_RIG_MUD_PRESSURE_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -19,4 +19,4 @@ class MudPressureSensor(Sensor):
             self.__pressure = pressure
             return
 
-        self.__pressure = self.generate_value(self.__pressure, 2, 0, 100)
+        self.__pressure = self.generate_value(self.__pressure, 2, DRILLING_RIG_MUD_PRESSURE_MIN, DRILLING_RIG_MUD_PRESSURE_MAX)

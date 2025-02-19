@@ -1,4 +1,4 @@
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_DENSITY
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_MUD_DENSITY, DRILLING_MUD_DENSITY_MAX, DRILLING_MUD_DENSITY_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -20,7 +20,7 @@ class MudDensitySensor(Sensor):
             self.__density = density
             return
 
-        self.__density = self.generate_value(self.__density, 2, 12, 15)
+        self.__density = self.generate_value(self.__density, 1, DRILLING_MUD_DENSITY_MIN, DRILLING_MUD_DENSITY_MAX)
 
     def set_init_value(self):
         self.__density = DRILLING_MUD_DENSITY

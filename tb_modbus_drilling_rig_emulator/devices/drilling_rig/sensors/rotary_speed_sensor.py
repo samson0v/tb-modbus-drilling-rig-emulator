@@ -1,5 +1,5 @@
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_RORATY_SPEED
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_RIG_RORATY_SPEED, DRILLING_RIG_RORATY_SPEED_MAX, DRILLING_RIG_RORATY_SPEED_MIN
 
 
 class RotarySpeedSensor(Sensor):
@@ -19,4 +19,4 @@ class RotarySpeedSensor(Sensor):
             self.__speed = speed
             return
 
-        self.__speed = self.generate_value(self.__speed, 1, 0, 100)
+        self.__speed = self.generate_value(self.__speed, 3, DRILLING_RIG_RORATY_SPEED_MIN, DRILLING_RIG_RORATY_SPEED_MAX)

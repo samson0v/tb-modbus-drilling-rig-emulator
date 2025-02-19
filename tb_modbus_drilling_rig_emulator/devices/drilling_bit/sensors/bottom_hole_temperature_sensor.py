@@ -1,4 +1,4 @@
-from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_BIT_TEMPERATURE
+from tb_modbus_drilling_rig_emulator.devices.initial_sensors_values import DRILLING_BIT_TEMPERATURE, DRILLING_BIT_TEMPERATURE_MAX, DRILLING_BIT_TEMPERATURE_MIN
 from tb_modbus_drilling_rig_emulator.devices.sensor import Sensor
 
 
@@ -13,10 +13,10 @@ class BottomHoleTemperatureSensor(Sensor):
 
         if is_drilling_fluid_supplied and self.temperature <= 140:
             self.__increase_temperature(1)
-        elif is_drilling_fluid_supplied and self.temperature > 150:
+        elif is_drilling_fluid_supplied and self.temperature > 148:
             self.__decrease_temperature(1)
-        elif is_drilling_fluid_supplied and 140 <= self.temperature <= 150:
-            self.temperature = self.generate_value(self.temperature, 5, 140, 150)
+        elif is_drilling_fluid_supplied and 140 <= self.temperature <= 148:
+            self.temperature = self.generate_value(self.temperature, 3, DRILLING_BIT_TEMPERATURE_MIN, DRILLING_BIT_TEMPERATURE_MAX)
         elif not is_drilling_fluid_supplied:
             self.__increase_temperature(10)
 

@@ -100,7 +100,7 @@ class Drawwork(Device):
                 self.__set_slow_speed()
 
     def __set_slow_speed(self):
-        self.__hoist_speed_sensor.update(5)
+        self.__hoist_speed_sensor.update(3)
 
     def __set_normal_speed(self):
-        self.__hoist_speed_sensor.update(15)
+        self.__hoist_speed_sensor.update(12)
