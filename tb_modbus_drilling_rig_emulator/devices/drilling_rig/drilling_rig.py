@@ -43,13 +43,14 @@ class DrillingRig(Device):
     def is_running(self):
         return self._running
 
-    def on(self):
+    def on(self, with_init_values=True):
         super().on()
 
-        self.__hook_load_sensor.set_init_value()
-        self.__mud_pressure_sensor.set_init_value()
-        self.__rotary_speed_sensor.set_init_value()
-        self.__drilling_line_hoist_speed_sensor.set_init_value()
+        if with_init_values:
+            self.__hook_load_sensor.set_init_value()
+            self.__mud_pressure_sensor.set_init_value()
+            self.__rotary_speed_sensor.set_init_value()
+            self.__drilling_line_hoist_speed_sensor.set_init_value()
 
     def off(self):
         super().off()
@@ -73,6 +74,7 @@ class DrillingRig(Device):
         self.update_state()
 
         if self._running:
+            self.__drilling_line_hoist_speed_sensor.update()
             self.__hook_load_sensor.update()
             self.__mud_pressure_sensor.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
             self.__rotary_speed_sensor.update()

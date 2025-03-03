@@ -66,17 +66,18 @@ class DrillingMud(Device):
     def valve(self):
         return self.__valve
 
-    def on(self):
+    def on(self, with_init_values=True):
         super().on()
 
         self.__valve = True
         self._update_storage(1, {2: self.__valve})
 
-        self.__mud_temperature_sensor.set_init_value()
-        self.__gas_cut_mud_sensor.set_init_value()
-        self.__mud_pressure_sensor.set_init_value()
-        self.__mud_density_sensor.set_init_value()
-        self.__mud_flow_rate_sensor.set_init_value()
+        if with_init_values:
+            self.__mud_temperature_sensor.set_init_value()
+            self.__gas_cut_mud_sensor.set_init_value()
+            self.__mud_pressure_sensor.set_init_value()
+            self.__mud_density_sensor.set_init_value()
+            self.__mud_flow_rate_sensor.set_init_value()
 
     def off(self):
         super().off()

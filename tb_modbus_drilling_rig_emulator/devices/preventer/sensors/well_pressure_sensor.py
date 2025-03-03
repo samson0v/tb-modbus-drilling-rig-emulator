@@ -14,12 +14,17 @@ class WellPressureSensor(Sensor):
     def update(self, pressure=None, is_drilling_fluid_supplied=True):
         if not is_drilling_fluid_supplied:
             self.__pressure += 1
+            return
 
         if pressure is not None:
             self.__pressure = pressure
             return
 
         self.__pressure = self.generate_value(self.__pressure, 4, PREVENTER_PRESSURE_MIN, PREVENTER_PRESSURE_MAX)
+
+    def relieving_pressure(self):
+        if self.__pressure > 0:
+            self.__pressure -= 1
 
     def set_init_value(self):
         self.__pressure = PREVENTER_PRESSURE

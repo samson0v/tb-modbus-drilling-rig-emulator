@@ -71,14 +71,15 @@ class Preventer(Device):
         self.__system_leak_detection_sensor.set_init_value()
         self.__well_pressure_sensor.set_init_value()
 
-    def off(self):
+    def off(self, with_init_values=True):
         super().off()
 
-        self.__equipment_vibration_sensor.update(vibration=0)
-        self.__flow_rate_sensor.update(flow_rate=0)
-        self.__gas_cut_mud_sensor.update(level=0)
-        self.__system_leak_detection_sensor.update(level=0)
-        self.__well_pressure_sensor.update(pressure=0)
+        if with_init_values:
+            self.__equipment_vibration_sensor.update(vibration=0)
+            self.__flow_rate_sensor.update(flow_rate=0)
+            self.__gas_cut_mud_sensor.update(level=0)
+            self.__system_leak_detection_sensor.update(level=0)
+            self.__well_pressure_sensor.update(pressure=0)
 
         self._update_storage(6, self.get_all_sensors_values())
 
@@ -94,6 +95,7 @@ class Preventer(Device):
             self.__system_leak_detection_sensor.update()
             self.__well_pressure_sensor.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
         else:
+            self.__well_pressure_sensor.relieving_pressure()
             self.__equipment_temperature_sensor.cooling()
             self.__mud_temperature_sensor.cooling()
 

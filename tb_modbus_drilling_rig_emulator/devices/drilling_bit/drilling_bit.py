@@ -58,12 +58,13 @@ class DrillingBit(Device):
     def is_running(self):
         return self._running
 
-    def on(self):
+    def on(self, with_init_values=True):
         super().on()
 
-        self.__bottom_hole_temperature_sensor.set_init_value()
-        self.__drill_bit_vibration_sensor.set_init_value()
-        self.__mud_pressure_sensor.set_init_value()
+        if with_init_values:
+            self.__bottom_hole_temperature_sensor.set_init_value()
+            self.__drill_bit_vibration_sensor.set_init_value()
+            self.__mud_pressure_sensor.set_init_value()
 
     def off(self):
         super().off()
