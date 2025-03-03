@@ -92,7 +92,7 @@ class DrillingMud(Device):
         self._update_storage(6, self.get_all_sensors_values())
 
     def update(self):
-        self.__mud_temperature_sensor.cooling()
+        self.update_state()
 
         if self._running:
             self.__mud_level_sensor.update()
