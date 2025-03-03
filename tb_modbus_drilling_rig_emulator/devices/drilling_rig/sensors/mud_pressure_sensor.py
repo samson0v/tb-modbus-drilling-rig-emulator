@@ -14,7 +14,11 @@ class MudPressureSensor(Sensor):
     def set_init_value(self):
         self.__pressure = DRILLING_RIG_MUD_PRESSURE
 
-    def update(self, pressure=None):
+    def update(self, pressure=None, is_drilling_fluid_supplied=True):
+        if not is_drilling_fluid_supplied:
+            self.__pressure = 0
+            return
+
         if pressure is not None:
             self.__pressure = pressure
             return

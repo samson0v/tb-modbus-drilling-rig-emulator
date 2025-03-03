@@ -67,7 +67,8 @@ class DrillingRigEmulator:
         self.__drilling_bit_device.on()
         self.__drilling_mud_device.on()
         self.__drawwork_device.on()
-        self.__preventer_device.on()
+        # self.__preventer_device.on()
+        self.__preventer_device.off()
         self.__drilling_rig_device.on()
 
     async def __start_modbus_servers(self):
@@ -78,12 +79,15 @@ class DrillingRigEmulator:
         self.__log.info(f"Starting Modbus server on port {port}")
         await StartAsyncTcpServer(context=context, identity=self.__identity, address=("0.0.0.0", port))
 
-    def __stop_drilling(self):
+    def __stop_drilling(self, emergency_stop=False):
+        if emergency_stop:
+            self.__preventer_device.on()
+
         self.__drilling_mud_device.off()
         self.__drawwork_device.off()
         self.__drilling_bit_device.off()
         self.__drilling_rig_device.off()
-        self.__preventer_device.off()
+        # self.__preventer_device.on()
 
         self.__log.info("Drilling rig has stopped.")
 
@@ -98,8 +102,9 @@ class DrillingRigEmulator:
                                                       drawwork_direction=self.__drawwork_device.direction,
                                                       is_drawwork_on=self.__drawwork_device.status)
                     self.__drawwork_device.update(self.__drilling_bit_device.current_depth)
-                    self.__drilling_rig_device.update()
-                    self.__preventer_device.update()
+                    self.__drilling_rig_device.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
+                    self.__preventer_device.update(mud_temperature=self.__drilling_mud_device.temperature,
+                                                   is_drilling_fluid_supplied=is_drilling_fluid_supplied)
 
                     self.__log_values()
                     await self.__check_conditions()
@@ -112,6 +117,10 @@ class DrillingRigEmulator:
             self.__stop_drilling()
 
     async def __check_conditions(self):
+        if self.__preventer_device.pressure >= 50 or self.__drilling_bit_device.temperature >= 200:
+            self.__log.info("Preventer pressure is too high. Stopping the drilling process.")
+            self.__stop_drilling(emergency_stop=True)
+
         if self.__drilling_bit_device.current_depth >= self.__drilling_bit_device.well_depth:
             self.__log.info("Drilling rig has reached the drilling depth. Stopping the drilling process.")
             self.__has_reached_drilling_depth = True

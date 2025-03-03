@@ -11,7 +11,11 @@ class MudPressureSensor(Sensor):
     def pressure(self):
         return self.__pressure
 
-    def update(self, pressure=None):
+    def update(self, pressure=None, is_drilling_fluid_supplied=True):
+        if not is_drilling_fluid_supplied:
+            self.__pressure = 0
+            return
+
         if pressure is not None:
             self.__pressure = pressure
             return

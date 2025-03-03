@@ -8,8 +8,8 @@ class BottomHoleTemperatureSensor(Sensor):
         self.temperature = temperature
 
     def update(self, is_drilling_fluid_supplied):
-        if self.temperature >= 200 and not is_drilling_fluid_supplied:
-            raise ValueError("Drilling bit temperature is too high")
+        # if self.temperature >= 200 and not is_drilling_fluid_supplied:
+        #     raise ValueError("Drilling bit temperature is too high")
 
         if is_drilling_fluid_supplied and self.temperature <= 140:
             self.__increase_temperature(1)

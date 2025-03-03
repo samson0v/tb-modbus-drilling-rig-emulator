@@ -69,11 +69,11 @@ class DrillingRig(Device):
             self.__mud_pressure_sensor.address: self.__mud_pressure_sensor.pressure
         }
 
-    def update(self):
+    def update(self, is_drilling_fluid_supplied=True):
         self.update_state()
 
         if self._running:
             self.__hook_load_sensor.update()
-            self.__mud_pressure_sensor.update()
+            self.__mud_pressure_sensor.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
             self.__rotary_speed_sensor.update()
             self._update_storage(6, self.get_all_sensors_values())

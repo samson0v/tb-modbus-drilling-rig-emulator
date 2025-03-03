@@ -100,7 +100,7 @@ class DrillingBit(Device):
             self.__bottom_hole_temperature_sensor.update(is_drilling_fluid_supplied)
             self.__drill_bit_position_sensor.update(self.__rop_sensor.speed)
             self.__drill_bit_vibration_sensor.update()
-            self.__mud_pressure_sensor.update()
+            self.__mud_pressure_sensor.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
         else:
             self.__bottom_hole_temperature_sensor.cooling()
 
