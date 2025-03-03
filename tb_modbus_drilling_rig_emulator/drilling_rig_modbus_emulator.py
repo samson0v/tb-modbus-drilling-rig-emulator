@@ -67,7 +67,6 @@ class DrillingRigEmulator:
         self.__drilling_bit_device.on()
         self.__drilling_mud_device.on()
         self.__drawwork_device.on()
-        # self.__preventer_device.on()
         self.__preventer_device.off()
         self.__drilling_rig_device.on()
 
@@ -87,7 +86,6 @@ class DrillingRigEmulator:
         self.__drawwork_device.off()
         self.__drilling_bit_device.off()
         self.__drilling_rig_device.off()
-        # self.__preventer_device.on()
 
         self.__log.info("Drilling rig has stopped.")
 
@@ -117,6 +115,9 @@ class DrillingRigEmulator:
             self.__stop_drilling()
 
     async def __check_conditions(self):
+        if self.__preventer_device.status:
+            self.__stop_drilling(emergency_stop=True)
+
         if self.__preventer_device.pressure >= 50 or self.__drilling_bit_device.temperature >= 200:
             self.__log.info("Preventer pressure is too high. Stopping the drilling process.")
             self.__stop_drilling(emergency_stop=True)
