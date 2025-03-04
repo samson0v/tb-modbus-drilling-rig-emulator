@@ -15,7 +15,7 @@ class BottomHoleTemperatureSensor(Sensor):
         elif is_drilling_fluid_supplied and 140 <= self.temperature <= 148:
             self.temperature = self.generate_value(self.temperature, 3, DRILLING_BIT_TEMPERATURE_MIN, DRILLING_BIT_TEMPERATURE_MAX)
         elif not is_drilling_fluid_supplied:
-            self.__increase_temperature(10)
+            self.__increase_temperature(3)
 
     def __increase_temperature(self, value):
         self.temperature += value

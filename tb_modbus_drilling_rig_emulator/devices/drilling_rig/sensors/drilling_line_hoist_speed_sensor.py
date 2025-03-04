@@ -14,7 +14,7 @@ class DrillingLineHoistSpeedSensor(Sensor):
     def set_init_value(self):
         self.__speed = DRILLING_RIG_DRILLING_LINE_HOIST_SPEED
 
-    def update(self, speed):
+    def update(self, speed=None):
         if speed is not None:
             self.__speed = speed
             return
