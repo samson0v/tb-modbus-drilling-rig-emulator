@@ -141,12 +141,12 @@ class DrillingRigEmulator:
             self.__emergency_stop = True
             self.__stop_drilling(emergency_stop=True)
 
-        if self.__drilling_bit_device.current_depth >= self.__drilling_bit_device.well_depth:
+        if self.__drilling_bit_device.current_depth >= self.__drilling_bit_device.well_depth and not self.__has_reached_drilling_depth:
             self.__log.info("Drilling rig has reached the drilling depth. Stopping the drilling process.")
             self.__has_reached_drilling_depth = True
             self.__stop_drilling()
 
-        if self.__drilling_bit_device.current_depth <= self.__drilling_bit_device.well_depth and self.__has_reached_drilling_depth:
+        if self.__drilling_bit_device.current_depth < self.__drilling_bit_device.well_depth and self.__has_reached_drilling_depth:
             await self.__start_drilling()
             self.__has_reached_drilling_depth = False
 
