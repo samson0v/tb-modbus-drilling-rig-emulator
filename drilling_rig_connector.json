@@ -1,5 +1,5 @@
 {
-  "logLevel": "DEBUG",
+  "logLevel": "INFO",
   "master": {
     "slaves": [
       {
@@ -26,13 +26,6 @@
         "waitAfterFailedAttemptsMs": 30000,
         "attributes": [
           {
-            "tag": "running",
-            "type": "bit",
-            "functionCode": 1,
-            "objectsCount": 1,
-            "address": 1
-          },
-          {
             "tag": "depth",
             "type": "16int",
             "functionCode": 3,
@@ -49,32 +42,59 @@
         ],
         "timeseries": [
           {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 1000
+            }
+          },
+          {
             "tag": "temperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "position",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 3,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 4,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           }
         ],
         "attributeUpdates": [
@@ -114,21 +134,18 @@
         "retries": true,
         "retryOnEmpty": true,
         "retryOnInvalid": true,
-        "pollPeriod": 3000,
+        "pollPeriod": 1000,
         "unitId": 2,
         "deviceName": "Drilling Mud",
         "deviceType": "default",
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
         "attributes": [
-          {
-            "tag": "running",
-            "type": "bit",
-            "functionCode": 1,
-            "objectsCount": 1,
-            "address": 1
-          },
           {
             "tag": "tankCapacity",
             "type": "16int",
@@ -141,16 +158,34 @@
             "type": "bit",
             "functionCode": 1,
             "objectsCount": 1,
-            "address": 2
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           }
         ],
         "timeseries": [
+          {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 1000
+            }
+          },
           {
             "tag": "gasCut",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "density",
@@ -158,35 +193,55 @@
             "functionCode": 3,
             "objectsCount": 1,
             "address": 2,
-            "divider": 10
+            "divider": 10,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 5000
+            }
           },
           {
             "tag": "flowRate",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 3,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "liquidVolume",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 4,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 5,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 5000
+            }
           },
           {
             "tag": "temperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 6
+            "address": 6,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           }
         ],
         "attributeUpdates": [],
@@ -230,42 +285,62 @@
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
         "attributes": [
+        ],
+        "timeseries": [
           {
             "tag": "running",
             "type": "bit",
             "functionCode": 1,
             "objectsCount": 1,
-            "address": 1
-          }
-        ],
-        "timeseries": [
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 1000
+            }
+          },
           {
             "tag": "lineHoistSpeed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "hookLoad",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "speed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 3,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 4,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           }
         ],
         "attributeUpdates": [],
@@ -302,63 +377,95 @@
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
         "attributes": [
+        ],
+        "timeseries": [
           {
             "tag": "running",
             "type": "bit",
             "functionCode": 1,
             "objectsCount": 1,
-            "address": 1
-          }
-        ],
-        "timeseries": [
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 1000
+            }
+          },
           {
             "tag": "equipmentTemperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "mudTemperature",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 3,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "flowRate",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 4,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "gasCut",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 5,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "leak",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 6
+            "address": 6,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "pressure",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 7
+            "address": 7,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           }
         ],
         "attributeUpdates": [],
@@ -390,14 +497,11 @@
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
+        "reportStrategy": {
+          "type": "ON_CHANGE_OR_REPORT_PERIOD",
+          "reportPeriod": 10000
+        },
         "attributes": [
-          {
-            "tag": "running",
-            "type": "bit",
-            "functionCode": 1,
-            "objectsCount": 1,
-            "address": 1
-          },
           {
             "tag": "direction",
             "type": "bit",
@@ -415,46 +519,81 @@
         ],
         "timeseries": [
           {
+            "tag": "running",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 1000
+            }
+          },
+          {
             "tag": "length",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 1
+            "address": 1,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "speed",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 2
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "inclination",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 3
+            "address": 3,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "position",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 4
+            "address": 4,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "tension",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 5,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           },
           {
             "tag": "vibration",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 6
+            "address": 6,
+            "reportStrategy": {
+              "type": "ON_REPORT_PERIOD",
+              "reportPeriod": 4000
+            }
           }
         ],
         "attributeUpdates": [],
