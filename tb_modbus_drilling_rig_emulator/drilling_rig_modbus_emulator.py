@@ -90,6 +90,8 @@ class DrillingRigEmulator:
     def __stop_drilling(self, emergency_stop=False):
         if emergency_stop:
             self.__preventer_device.on()
+        else:
+            self.__preventer_device.off()
 
         self.__drilling_mud_device.off()
         self.__drawwork_device.off()
@@ -110,8 +112,10 @@ class DrillingRigEmulator:
                                                       is_drawwork_on=self.__drawwork_device.status)
                     self.__drawwork_device.update(self.__drilling_bit_device.current_depth)
                     self.__drilling_rig_device.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
-                    self.__preventer_device.update(mud_temperature=self.__drilling_mud_device.temperature,
-                                                   is_drilling_fluid_supplied=is_drilling_fluid_supplied)
+
+                    if not self.__has_reached_drilling_depth:
+                        self.__preventer_device.update(mud_temperature=self.__drilling_mud_device.temperature,
+                                                       is_drilling_fluid_supplied=is_drilling_fluid_supplied)
 
                     self.__log_values()
                     await self.__check_conditions()
