@@ -22,5 +22,5 @@ class EquipmentTemperatureSensor(Sensor):
         self.__temperature = PREVENTER_EQUIPMENT_TEMPERATURE
 
     def cooling(self):
-        if self.__temperature >= 0:
+        if self.__temperature > 0:
             self.__temperature -= 1

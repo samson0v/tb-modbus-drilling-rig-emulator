@@ -27,5 +27,5 @@ class BottomHoleTemperatureSensor(Sensor):
         self.temperature = DRILLING_BIT_TEMPERATURE
 
     def cooling(self):
-        if self.temperature >= 0:
+        if self.temperature > 0:
             self.temperature -= 1

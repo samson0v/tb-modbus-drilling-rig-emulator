@@ -22,5 +22,5 @@ class MudTemperatureSensor(Sensor):
         self.__temperature = DRILLING_MUD_TEMPERATURE
 
     def cooling(self):
-        if self.__temperature >= 0:
+        if self.__temperature > 0:
             self.__temperature -= 1
