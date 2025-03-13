@@ -15,8 +15,8 @@
         "retryOnInvalid": true,
         "pollPeriod": 1000,
         "unitId": 1,
-        "deviceName": "Drilling Bit",
-        "deviceType": "default",
+        "deviceName": "Drilling bit",
+        "deviceType": "Drilling bit",
         "reportStrategy": {
           "type": "ON_CHANGE_OR_REPORT_PERIOD",
           "reportPeriod": 10000
@@ -135,8 +135,8 @@
         "retryOnInvalid": true,
         "pollPeriod": 1000,
         "unitId": 2,
-        "deviceName": "Drilling Mud",
-        "deviceType": "default",
+        "deviceName": "Drilling mud",
+        "deviceType": "Drilling mud",
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,
@@ -273,8 +273,8 @@
         "retryOnInvalid": true,
         "pollPeriod": 1000,
         "unitId": 3,
-        "deviceName": "Drilling Rig",
-        "deviceType": "default",
+        "deviceName": "Drilling rig",
+        "deviceType": "Drilling rig",
         "reportStrategy": {
           "type": "ON_CHANGE_OR_REPORT_PERIOD",
           "reportPeriod": 10000
@@ -365,7 +365,7 @@
         "pollPeriod": 1000,
         "unitId": 4,
         "deviceName": "Preventer",
-        "deviceType": "default",
+        "deviceType": "Preventer",
         "reportStrategy": {
           "type": "ON_CHANGE_OR_REPORT_PERIOD",
           "reportPeriod": 10000
@@ -489,7 +489,7 @@
         "pollPeriod": 1000,
         "unitId": 5,
         "deviceName": "Drawwork",
-        "deviceType": "default",
+        "deviceType": "Drawwork",
         "connectAttemptTimeMs": 3000,
         "connectAttemptCount": 3,
         "waitAfterFailedAttemptsMs": 30000,

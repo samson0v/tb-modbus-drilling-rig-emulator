@@ -23,7 +23,7 @@ class WellPressureSensor(Sensor):
         self.__pressure = self.generate_value(self.__pressure, 4, PREVENTER_PRESSURE_MIN, PREVENTER_PRESSURE_MAX)
 
     def relieving_pressure(self):
-        if self.__pressure > 0:
+        if self.__pressure > PREVENTER_PRESSURE_MIN:
             self.__pressure -= 1
 
     def set_init_value(self):
