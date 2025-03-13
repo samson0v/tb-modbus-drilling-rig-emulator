@@ -171,7 +171,7 @@ class DrillingRigEmulator:
 
 
 if __name__ == '__main__':
-    drilling_rig_emulator = DrillingRigEmulator(drilling_depth=2000, drilling_speed=35, monitoring_interval=2)
+    drilling_rig_emulator = DrillingRigEmulator(drilling_depth=3500, drilling_speed=15, monitoring_interval=2)
     try:
         asyncio.run(drilling_rig_emulator.run())
     except KeyboardInterrupt:
