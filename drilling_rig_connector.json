@@ -48,8 +48,7 @@
             "objectsCount": 1,
             "address": 1,
             "reportStrategy": {
-              "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 1000
+              "type": "ON_CHANGE"
             }
           },
           {
@@ -172,8 +171,7 @@
             "objectsCount": 1,
             "address": 1,
             "reportStrategy": {
-              "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 1000
+              "type": "ON_CHANGE"
             }
           },
           {
@@ -294,8 +292,7 @@
             "objectsCount": 1,
             "address": 1,
             "reportStrategy": {
-              "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 1000
+              "type": "ON_CHANGE"
             }
           },
           {
@@ -386,8 +383,7 @@
             "objectsCount": 1,
             "address": 1,
             "reportStrategy": {
-              "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 1000
+              "type": "ON_CHANGE"
             }
           },
           {
@@ -525,8 +521,7 @@
             "objectsCount": 1,
             "address": 1,
             "reportStrategy": {
-              "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 1000
+              "type": "ON_CHANGE"
             }
           },
           {
