@@ -63,14 +63,6 @@ class Preventer(Device):
     def on(self):
         super().on()
 
-        self.__equipment_temperature_sensor.set_init_value()
-        self.__equipment_vibration_sensor.set_init_value()
-        self.__mud_temperature_sensor.set_init_value()
-        self.__flow_rate_sensor.set_init_value()
-        self.__gas_cut_mud_sensor.set_init_value()
-        self.__system_leak_detection_sensor.set_init_value()
-        self.__well_pressure_sensor.set_init_value()
-
     def off(self, with_init_values=True):
         super().off()
 
