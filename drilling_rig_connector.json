@@ -194,7 +194,7 @@
             "divider": 10,
             "reportStrategy": {
               "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 5000
+              "reportPeriod": 4000
             }
           },
           {
@@ -227,7 +227,7 @@
             "address": 5,
             "reportStrategy": {
               "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 5000
+              "reportPeriod": 4000
             }
           },
           {
