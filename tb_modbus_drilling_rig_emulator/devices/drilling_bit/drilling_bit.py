@@ -1,7 +1,8 @@
 from tb_modbus_drilling_rig_emulator.devices.device import Device
 from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.bottom_hole_temperature_sensor import \
     BottomHoleTemperatureSensor
-from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.drill_bit_position_sensor import DrillBitPositionSensor
+from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.drill_bit_position_sensor import \
+    DrillBitPositionSensor
 from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.drill_bit_vibration_sensor import \
     DrillBitVibrationSensor
 from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.mud_pressure_sensor import MudPressureSensor
@@ -10,7 +11,7 @@ from tb_modbus_drilling_rig_emulator.devices.drilling_bit.sensors.well_depth_sen
 
 
 class DrillingBit(Device):
-    def __init__(self, input_drilling_depth, input_drilling_speed):
+    def __init__(self, input_drilling_depth, input_drilling_speed, reset_callback):
         super().__init__()
 
         self.__bottom_hole_temperature_sensor = BottomHoleTemperatureSensor(address=1, temperature=0)
@@ -24,6 +25,10 @@ class DrillingBit(Device):
         self.__drill_bit_vibration_sensor.set_init_value()
         self.__mud_pressure_sensor.set_init_value()
 
+        self.__reset = False
+        self.__reset_callback = reset_callback
+
+        self._init_storage([self.__reset], registers_type='c', from_address=2)
         self._init_storage(self.get_all_sensors_values().values())
 
     def __str__(self):
@@ -88,11 +93,21 @@ class DrillingBit(Device):
             self.__well_depth_sensor.well_depth = well_depth
             self.__drill_bit_position_sensor.reset()
 
+    def __update_reset_state(self):
+        reset = self._read_storage(1, 2)[0]
+
+        if reset != self.__reset:
+            self.__reset = reset
+            self._update_storage(1, {2: self.__reset})
+            self.__drill_bit_position_sensor.reset()
+            self.__reset_callback()
+
     def update_state(self):
         super().update_state()
 
         self.__update_well_depth_state()
         self.__update_speed_state()
+        self.__update_reset_state()
 
     def update(self, is_drilling_fluid_supplied, is_drawwork_on, drawwork_direction):
         self.update_state()

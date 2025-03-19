@@ -38,6 +38,16 @@
             "functionCode": 3,
             "objectsCount": 1,
             "address": 5
+          },
+          {
+            "tag": "reset",
+            "type": "bit",
+            "functionCode": 1,
+            "objectsCount": 1,
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           }
         ],
         "timeseries": [
@@ -119,6 +129,13 @@
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
+          },
+          {
+            "tag": "reset",
+            "type": "bit",
+            "functionCode": 5,
+            "objectsCount": 1,
+            "address": 2
           }
         ]
       },

@@ -34,11 +34,15 @@ class DrillingRigEmulator:
 
         self.__drilling_mud_device = DrillingMud()
         self.__drilling_rig_device = DrillingRig()
-        self.__drilling_bit_device = DrillingBit(self.__drilling_depth, drilling_speed)
+        self.__drilling_bit_device = DrillingBit(self.__drilling_depth, drilling_speed, self.reset_callback)
         self.__preventer_device = Preventer()
         self.__drawwork_device = Drawwork()
 
         self.__device_context = self.__setup_device_context()
+
+    def reset_callback(self):
+        self.__has_reached_drilling_depth = False
+        self.__emergency_stop = False
 
     @staticmethod
     def __setup_identity():
