@@ -41,8 +41,16 @@ class DrillingRigEmulator:
         self.__device_context = self.__setup_device_context()
 
     def reset_callback(self):
-        self.__has_reached_drilling_depth = False
+        if self.__has_reached_drilling_depth:
+            self.__has_reached_drilling_depth = False
+
         self.__emergency_stop = False
+
+        self.__drilling_bit_device.on()
+        self.__drilling_mud_device.on()
+        self.__drawwork_device.on()
+        self.__preventer_device.off()
+        self.__drilling_rig_device.on()
 
     @staticmethod
     def __setup_identity():
@@ -155,6 +163,10 @@ class DrillingRigEmulator:
         if self.__drilling_bit_device.current_depth < self.__drilling_bit_device.well_depth and self.__has_reached_drilling_depth:
             await self.__start_drilling()
             self.__has_reached_drilling_depth = False
+
+        if self.__drilling_bit_device.current_depth >= 15000:
+            self.__has_reached_drilling_depth = True
+            self.__stop_drilling()
 
         if self.__drilling_rig_device.is_running():
             if not self.__drilling_bit_device.is_running():
