@@ -11,8 +11,8 @@ class WellPressureSensor(Sensor):
     def pressure(self):
         return self.__pressure
 
-    def update(self, pressure=None, is_drilling_fluid_supplied=True):
-        if not is_drilling_fluid_supplied:
+    def update(self, is_drilling=False, pressure=None, is_drilling_fluid_supplied=True):
+        if not is_drilling_fluid_supplied and is_drilling:
             self.__pressure += 1
             return
 

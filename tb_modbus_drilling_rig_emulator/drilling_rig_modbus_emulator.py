@@ -124,7 +124,10 @@ class DrillingRigEmulator:
                                                       is_drawwork_on=self.__drawwork_device.status)
                     self.__drawwork_device.update(self.__drilling_bit_device.current_depth)
                     self.__drilling_rig_device.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
-                    self.__preventer_device.update(mud_temperature=self.__drilling_mud_device.temperature,
+
+                    is_drilling = self.__drilling_bit_device.is_running()
+                    self.__preventer_device.update(is_drilling,
+                                                   mud_temperature=self.__drilling_mud_device.temperature,
                                                    is_drilling_fluid_supplied=is_drilling_fluid_supplied)
 
                     self.__log_values()

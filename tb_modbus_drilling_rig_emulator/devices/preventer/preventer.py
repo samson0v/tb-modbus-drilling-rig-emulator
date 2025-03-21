@@ -75,7 +75,7 @@ class Preventer(Device):
 
         self._update_storage(6, self.get_all_sensors_values())
 
-    def update(self, mud_temperature=None, is_drilling_fluid_supplied=True):
+    def update(self, is_drilling, mud_temperature=None, is_drilling_fluid_supplied=True):
         self.update_state()
 
         if not self._running:
@@ -85,7 +85,7 @@ class Preventer(Device):
             self.__flow_rate_sensor.update()
             self.__gas_cut_mud_sensor.update()
             self.__system_leak_detection_sensor.update()
-            self.__well_pressure_sensor.update(is_drilling_fluid_supplied=is_drilling_fluid_supplied)
+            self.__well_pressure_sensor.update(is_drilling, is_drilling_fluid_supplied=is_drilling_fluid_supplied)
         else:
             self.__well_pressure_sensor.relieving_pressure()
             self.__equipment_temperature_sensor.cooling()
