@@ -41,7 +41,7 @@
           },
           {
             "tag": "reset",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 2,
@@ -53,7 +53,7 @@
         "timeseries": [
           {
             "tag": "running",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1,
@@ -125,14 +125,14 @@
         "rpc": [
           {
             "tag": "setRunning",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
           },
           {
             "tag": "reset",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 2
@@ -171,7 +171,7 @@
           },
           {
             "tag": "opened",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 2,
@@ -183,7 +183,7 @@
         "timeseries": [
           {
             "tag": "running",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1,
@@ -263,14 +263,14 @@
         "rpc": [
           {
             "tag": "setRunning",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
           },
           {
             "tag": "setOpened",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 2
@@ -304,7 +304,7 @@
         "timeseries": [
           {
             "tag": "running",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1,
@@ -361,7 +361,7 @@
         "rpc": [
           {
             "tag": "setRunning",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
@@ -395,7 +395,7 @@
         "timeseries": [
           {
             "tag": "running",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1,
@@ -485,7 +485,7 @@
         "rpc": [
           {
             "tag": "setRunning",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
@@ -517,14 +517,14 @@
         "attributes": [
           {
             "tag": "direction",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 2
           },
           {
             "tag": "drawworkSpeed",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 3
@@ -533,7 +533,7 @@
         "timeseries": [
           {
             "tag": "running",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
             "address": 1,
@@ -612,21 +612,21 @@
         "rpc": [
           {
             "tag": "setRunning",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 1
           },
           {
             "tag": "setDirection",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 2
           },
           {
             "tag": "drawworkSpeed",
-            "type": "bit",
+            "type": "bits",
             "functionCode": 5,
             "objectsCount": 1,
             "address": 3
