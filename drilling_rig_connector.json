@@ -30,14 +30,20 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 6
+            "address": 6,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           },
           {
             "tag": "rop",
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 5
+            "address": 5,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           },
           {
             "tag": "reset",
@@ -167,7 +173,10 @@
             "type": "16int",
             "functionCode": 3,
             "objectsCount": 1,
-            "address": 7
+            "address": 7,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           },
           {
             "tag": "opened",
@@ -199,7 +208,7 @@
             "address": 1,
             "reportStrategy": {
               "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 4000
+              "reportPeriod": 30000
             }
           },
           {
@@ -233,7 +242,7 @@
             "address": 4,
             "reportStrategy": {
               "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 4000
+              "reportPeriod": 30000
             }
           },
           {
@@ -455,7 +464,7 @@
             "address": 5,
             "reportStrategy": {
               "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 4000
+              "reportPeriod": 30000
             }
           },
           {
@@ -466,7 +475,7 @@
             "address": 6,
             "reportStrategy": {
               "type": "ON_REPORT_PERIOD",
-              "reportPeriod": 4000
+              "reportPeriod": 30000
             }
           },
           {
@@ -520,14 +529,20 @@
             "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
-            "address": 2
+            "address": 2,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           },
           {
             "tag": "drawworkSpeed",
             "type": "bits",
             "functionCode": 1,
             "objectsCount": 1,
-            "address": 3
+            "address": 3,
+            "reportStrategy": {
+              "type": "ON_CHANGE"
+            }
           }
         ],
         "timeseries": [
